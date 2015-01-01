@@ -1,17 +1,11 @@
 package controllers;
 
-import play.*;
 import play.mvc.*;
-
-import views.html.*;
-
 import models.Person;
-
 import play.data.Form;
-
 import java.util.List;
-
 import play.db.ebean.Model;
+import views.html.index;
 
 import static play.libs.Json.*;
 
@@ -28,7 +22,7 @@ public class Application extends Controller {
     }
 
     public static Result getPersons() {
-    	List<Person> persons = new Model.Finder(String.class, Person.class).all();
+    	List<Person> persons = new Model.Finder(Long.class, Person.class).all();
     	return ok(toJson(persons));
     }
 }
