@@ -3,7 +3,10 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.LoginController.redirection(url="login.scala.html")
+GET     /login                      controllers.LoginController.redirection(url="login.scala.html")
+
+# Task pages
 POST    /person                     controllers.Application.addPerson()
 GET     /persons                    controllers.Application.getPersons
 

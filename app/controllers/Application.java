@@ -5,20 +5,21 @@ import models.Person;
 import play.data.Form;
 import java.util.List;
 import play.db.ebean.Model;
-import views.html.index;
+//import views.html.index;
 
 import static play.libs.Json.*;
 
 public class Application extends Controller {
 
-    public static Result index() {
+  /*  public static Result index() {
         return ok(index.render());
     }
-
+*/
     public static Result addPerson() {
-    	Person person = Form.form(Person.class).bindFromRequest().get();
-    	person.save();
-    	return redirect(routes.Application.index());
+      Person person = Form.form(Person.class).bindFromRequest().get();
+      person.save();
+      //	return redirect(routes.LoginController.index());
+      return redirect(routes.LoginController.redirection());
     }
 
     public static Result getPersons() {
