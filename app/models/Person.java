@@ -20,6 +20,9 @@ public class Person extends Model {
     @Constraints.Required
     public String lastName;
 
+    @Constraints.Required
+    public Boolean administrator = false;
+
     @Constraints.Email
     public String email;
 
