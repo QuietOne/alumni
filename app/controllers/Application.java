@@ -6,7 +6,6 @@ import play.data.Form;
 import java.util.List;
 import play.db.ebean.Model;
 import views.html.index;
-import views.html.routes;
 
 import static play.libs.Json.*;
 
