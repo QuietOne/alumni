@@ -42,11 +42,14 @@
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> Remember me
         </label>
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-        <button class="btn btn-large btn-primary" type="submit">Sign up</button>
+        
+        <a href="@routes.LoginController.login()" class="btn btn-large btn-primary">Sign in</a>
+        <a href="@routes.RegisterController.showRegisterView()" class="btn btn-large btn-primary">Sign up</a>
+
     </form>
 
 </div> <!-- /container -->
+
 
 <!-- Le javascript
 ================================================== -->
