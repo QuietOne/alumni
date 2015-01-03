@@ -5,7 +5,8 @@ import models.Person;
 import play.data.Form;
 import java.util.List;
 import play.db.ebean.Model;
-//import views.html.index;
+import views.html.index;
+import views.html.routes;
 
 import static play.libs.Json.*;
 
@@ -19,7 +20,7 @@ public class Application extends Controller {
       Person person = Form.form(Person.class).bindFromRequest().get();
       person.save();
       //	return redirect(routes.LoginController.index());
-      return redirect(routes.LoginController.redirection());
+      return redirect(routes.LoginController.showLoginView());
     }
 
     public static Result getPersons() {

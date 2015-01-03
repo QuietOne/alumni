@@ -3,8 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.LoginController.redirection(url="login.scala.html")
-GET     /login                      controllers.LoginController.redirection(url="login.scala.html")
+GET     /                           controllers.LoginController.showLoginView()
+GET     /login                      controllers.LoginController.showLoginView()
 
 # Task pages
 POST    /person                     controllers.Application.addPerson()
