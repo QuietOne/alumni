@@ -19,6 +19,7 @@ public class EditProfileController extends Controller {
     public static Result editProfile() {
         Person person = Form.form(Person.class).bindFromRequest().get();
         person.update();
+        //TODO: show confirmation message
         return showEditView();
     }
 }

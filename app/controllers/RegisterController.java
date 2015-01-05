@@ -23,4 +23,8 @@ public class RegisterController extends Controller {
         person.save();
         return IndexController.showIndexView();
     }
+
+    public static Result backToLoginView() {
+        return LoginController.showLoginView();
+    }
 }
