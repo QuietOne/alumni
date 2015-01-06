@@ -2,14 +2,18 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.LoginController.showLoginView()
-GET     /login                      controllers.LoginController.login()
-GET     /register                   controllers.RegisterController.showRegisterView()
+# Login page
+GET         /                           controllers.LoginController.showLoginView()
+POST        /login                      controllers.LoginController.login()
 
-# Task pages
-POST    /person                     controllers.Application.addPerson()
-GET     /persons                    controllers.Application.getPersons
+# Register page
+GET         /register                   controllers.RegisterController.showRegisterView()
+POST        /register                   controllers.RegisterController.register()
+
+# Edit page
+
+# Index page
+GET         /main                      controllers.IndexController.showIndexView()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file               controllers.Assets.at(path="/public", file)

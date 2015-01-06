@@ -9,41 +9,50 @@ import views.html.login;
 
 /**
  *
- * @author Tihomir
+ * @author Tihomir Radosavljevic
  * @author Jelena
  *
- * @version 1.0.0
+ * @version 2.0.0
  */
 public class LoginController extends Controller {
 
-    //changed name into something with more meaning
     public static Result showLoginView() {
-        return ok(login.render());
+        return ok(login.render(Form.form(LoginParameters.class)));
     }
 
     public static Result login() {
-        Person person = Form.form(Person.class).bindFromRequest().get();
-        Person dbPerson =
-                Ebean.find(Person.class)
-                .where()
-                        .eq("email", person.email)
-                        .eq("password", person.password)
-                .findUnique();
-        //check if the query is valid
-        if (dbPerson == null) {
-            //check not found, I don't know if I used it right
-            return notFound("not found");
+        Form<LoginParameters> loginForm = Form.form(LoginParameters.class).bindFromRequest();
+        if (loginForm.hasErrors()) {
+            return badRequest(login.render(loginForm));
         } else {
-            return IndexController.showIndexView();
+            session().clear();
+            session("email", loginForm.get().email);
+            return redirect(routes.IndexController.showIndexView());
         }
     }
 
-    public static Result goToRegisterView() {
-        return RegisterController.showRegisterView();
+    public static Result logout() {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect(routes.LoginController.showLoginView());
     }
 
-    public static Result logout() {
-        //TODO: destroy data from user
-        return showLoginView();
+    //login form parameters and validation for it
+    public static class LoginParameters {
+        public String email;
+        public String password;
+
+        public String validate() {
+            Person dbPerson = Ebean.find(Person.class)
+                                .where()
+                                .eq("email", email)
+                                .eq("password", password)
+                                .findUnique();
+            if (dbPerson == null) {
+                return "Invalid email or password";
+            } else {
+                return null;
+            }
+        }
     }
 }
