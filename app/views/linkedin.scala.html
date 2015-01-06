@@ -1,0 +1,20 @@
+@(form: Form[LinkedInController.LinkedInParameters])
+@import helper.twitterBootstrap._
+
+@main("Connect to LinkedIn") {
+<div class="container">
+    <div class="form-signin">
+        @helper.form(routes.LinkedInController.autorizationStep1) {
+            <h2 class="form-signin-heading">Please sign in to LinkedIn</h2>
+            <input type="email" class="input-block-level" name="email" placeholder="Email" value="@form("email").value">
+            <input type="password" class="input-block-level" name="password" placeholder="Password" value="@form("password").value">
+            <button type="submit" class="btn btn-large btn-primary">Login</button>
+            @if(form.hasGlobalErrors) {
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+        }
+    </div> <!-- /form-signin -->
+</div> <!-- /container -->
+}

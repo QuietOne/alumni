@@ -29,9 +29,9 @@ public class Person extends Model {
     @Constraints.Required
     public String password;
 
-    public String linkedInUrl;
+    public String linkedInToken;
 
-    public String facebookUrl;
+    public String facebookToken;
 
     @OneToMany (mappedBy = "person", cascade = CascadeType.ALL)
     public List<Degree> degrees = new ArrayList<>();

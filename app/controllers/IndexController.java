@@ -10,6 +10,8 @@ import views.html.index;
  */
 public class IndexController extends Controller {
 
+    public static final String BASE = "http://localhost:9000";
+
     public static Result showIndexView() {
         return ok(index.render());
     }

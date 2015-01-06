@@ -10,10 +10,17 @@ POST        /login                      controllers.LoginController.login()
 GET         /register                   controllers.RegisterController.showRegisterView()
 POST        /register                   controllers.RegisterController.register()
 
+# Social pages
+GET         /linkedin-step1             controllers.LinkedInController.showLinkedInView()
+POST        /linkedin-step1             controllers.LinkedInController.autorizationStep1()
+GET         /linkedin-step2             controllers.LinkedInController.autorizationStep2()
+GET         /facebook                   controllers.FacebookController.showFacebookView()
+POST        /facebook                   controllers.FacebookController.connect()
+
 # Edit page
 
 # Index page
-GET         /main                      controllers.IndexController.showIndexView()
+GET         /main                       controllers.IndexController.showIndexView()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.at(path="/public", file)
