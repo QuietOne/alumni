@@ -1,8 +1,16 @@
 @(form: Form[RegisterController.RegisterParameters])
 @import helper.twitterBootstrap._
 
+<!-- Put this @menu on every page you want the menu-->
+@menu("Register"){
+
+}
+
 @main("Register") {
+
+
 <div class="container">
+
     <div class="form-signin">
         @helper.form(routes.RegisterController.register) {
             <h2 class="form-signin-heading">Please fullfil this form:</h2>
@@ -20,4 +28,5 @@
         }
     </div> <!-- /form-signin -->
 </div> <!-- /container -->
+
 }
