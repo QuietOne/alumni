@@ -1,4 +1,24 @@
-@()
+@(form: Form[EditProfileController.EditParameters])
+@import helper.twitterBootstrap._
 
 @main("Edit profile") {
+@menu()
+<div class="container">
+    <div class="form-signin">
+        @helper.form(routes.RegisterController.register) {
+            <h2 class="form-signin-heading">Please fullfil this form:</h2>
+            <input type="email" class="input-block-level" name="email" placeholder="Email" value="@form("email").value">
+            <input type="text" class="input-block-level" name="firstName" placeholder="First name" value="@form("firstName").value">
+            <input type="text" class="input-block-level" name="lastName" placeholder="Last name" value="@form("lastName").value">
+            <input type="password" class="input-block-level" name="password" placeholder="Password" value="@form("password").value">
+            <input type="password" class="input-block-level" name="confirmPassword" placeholder="Confirm password" value="@form("confirmPassword").value">
+            <button type="submit" class="btn btn-large btn-primary">Register</button>
+            @if(form.hasGlobalErrors) {
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+        }
+    </div> <!-- /form-signin -->
+</div> <!-- /container -->
 }

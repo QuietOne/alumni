@@ -1,0 +1,27 @@
+@(form: Form[CompanyController.CompanyParameters])
+@import helper.twitterBootstrap._
+
+@main("Add company") {
+@menu()
+<div class="container">
+    <div class="form-signin">
+        @helper.form(routes.CompanyController.addCompany) {
+            <h2 class="form-signin-heading">Add company</h2>
+            <input type="text" class="input-block-level" name="name" placeholder="Name" value="@form("name").value">
+            <input type="number" class="input-block-level" name="aproximateSize" placeholder="Approximate size number" value="@form("aproximateSize").value">
+            <input type="text" class="input-block-level" name="location" placeholder="Location" value="@form("location").value">
+            <button type="submit" class="btn btn-large btn-primary">Add</button>
+            @if(form.hasGlobalErrors) {
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+        }
+    </div> <!-- /form-signin -->
+</div> <!-- /container -->
+}

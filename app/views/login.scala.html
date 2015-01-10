@@ -14,7 +14,6 @@
             <input type="password" class="input-block-level" name="password" placeholder="Password" value="@form("password").value">
             <button type="submit" class="btn btn-large btn-primary">Login</button>
             <a href="@routes.RegisterController.showRegisterView()" class="btn btn-large btn-primary">Register</a>
-            <a href="@routes.LinkedInController.showLinkedInView()" class="btn btn-large btn-primary">LinkedIn</a>
             @if(form.hasGlobalErrors) {
                 <p class="error">
                     @form.globalError.message

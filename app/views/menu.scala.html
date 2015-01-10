@@ -1,22 +1,16 @@
-@(title: String)(content: Html)
-
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>@title</title>
-   </head>
-<body>
+@()
 
 <div class="horizontal">
     <ul>
-        <li><a href="main.scala.html">Home</a></li>
-        <li><a href="edit.scala.html">Edit</a></li>
-        <li><a href="linkedin.scala.html">LinkedIn</a></li>
-        <li><a href="facebook.scala.html">Facebook</a></li>
+        <li><a href="@routes.IndexController.showIndexView()">Home</a></li>
+        <li><a href="@routes.EditProfileController.showEditView()">Edit</a></li>
+        <!--<li><a href="@routes.LinkedInController.showLinkedInView()">LinkedIn</a></li>
+        <li><a href="@routes.FacebookController.showFacebookView()">Facebook</a></li>-->
+        <li><a href="#">Search persons</a></li>
+        <li><a href="#">Search companies</a></li>
+        @if(MainController.isAdmin) {
+        <li><a href="@routes.CompanyController.showCompanyView()">Add company</a></li>
+        <li><a href="@routes.SchoolController.showSchoolView()">Add school</a></li>
+        }
     </ul>
 </div>
-@content
-
-</body>
-</html>

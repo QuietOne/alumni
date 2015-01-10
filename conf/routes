@@ -18,6 +18,15 @@ GET         /facebook                   controllers.FacebookController.showFaceb
 POST        /facebook                   controllers.FacebookController.connect()
 
 # Edit page
+GET         /edit                       controllers.EditProfileController.showEditView()
+POST        /edit                       controllers.EditProfileController.edit()
+
+# Admin pages
+
+GET         /school                     controllers.SchoolController.showSchoolView()
+POST        /school                     controllers.SchoolController.addSchool()
+GET         /company                    controllers.CompanyController.showCompanyView()
+POST        /company                    controllers.CompanyController.addCompany()
 
 # Index page
 GET         /main                       controllers.IndexController.showIndexView()
