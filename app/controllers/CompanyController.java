@@ -23,7 +23,6 @@ public class CompanyController extends Controller{
 
     public static Result addCompany() {
         Form<CompanyParameters> companyForm = Form.form(CompanyParameters.class).bindFromRequest();
-        System.out.println("Form: "+companyForm);
         if (companyForm.hasErrors()) {
             return badRequest(company.render(companyForm));
         } else {
@@ -43,13 +42,10 @@ public class CompanyController extends Controller{
         public Integer aproximateSize;
 
         public String validate() {
-            System.out.println("Name: "+name);
-            System.out.println("Location: "+location);
-            System.out.println("Size: "+aproximateSize);
             if (name == null || name.equals("")) {
                 return "Name of company is not set.";
             }
-            if (aproximateSize == null || aproximateSize.equals("")) {
+            if (aproximateSize == null) {
                 return "Approximate size of company was created is not set.";
             }
             if (location == null || location.equals("")) {

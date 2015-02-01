@@ -26,7 +26,7 @@ public class Degree extends Model {
 
     public String fieldOfStudy;
 
-    public Double grade;
+    public String grade;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     public Person person;

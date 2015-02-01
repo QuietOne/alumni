@@ -25,7 +25,6 @@ public class SchoolController extends Controller{
 
     public static Result addSchool() {
         Form<SchoolParameters> schoolForm = Form.form(SchoolParameters.class).bindFromRequest();
-        System.out.println("Form: "+schoolForm);
         if (schoolForm.hasErrors()) {
             return badRequest(school.render(schoolForm));
         } else {
@@ -45,8 +44,6 @@ public class SchoolController extends Controller{
         public String location;
 
         public String validate() {
-            System.out.println("Name: "+name);
-            System.out.println("Location: "+location);
             if (name == null || name.equals("")) {
                 return "Name of school is not set.";
             }

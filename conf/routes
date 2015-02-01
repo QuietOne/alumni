@@ -26,6 +26,8 @@ POST        /change-password            controllers.ChangePasswordController.cha
 GET         /cv/{id}.pdf                controllers.EditProfileController.getCV(id: Long)
 GET         /remove-cv                  controllers.EditProfileController.removeCV()
 GET         /my-cv                      controllers.EditProfileController.getMyCV()
+GET         /degree                     controllers.DegreeController.showDegreeView()
+POST        /degree                     controllers.DegreeController.addDegree()
 
 # Admin pages
 

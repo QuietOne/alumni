@@ -1,0 +1,41 @@
+@(form: Form[DegreeController.DegreeParameters])(schools: List[School])(degrees: List[Degree])
+
+@import helper.twitterBootstrap._
+
+@main("Degree") {
+@menu()
+<div class="container">
+    <div class="form-signin">
+        @helper.form(routes.DegreeController.addDegree) {
+            <h2 class="form-signin-heading">Add degree</h2>
+            @helper.inputDate(form("dateStarted"),
+                '_label -> "Attendance started",
+                'class  -> "input-block-level")
+            @helper.inputDate(form("dateEnded"),
+                '_label -> "Attendance ended",
+                'class  -> "input-block-level")
+            @helper.inputText(form("name"),
+                '_label -> "Name of degree",
+                'class  -> "input-block-level")
+            @helper.inputText(form("fieldOfStudy"),
+                '_label -> "Field of study",
+                'class  -> "input-block-level")
+            @helper.inputText(form("grade"),
+                '_label -> "Grade",
+                'class  -> "input-block-level")
+            
+            <button type="submit" class="btn btn-large btn-primary">Add</button>
+            @if(form.hasGlobalErrors) {
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+        }
+    </div> <!-- /form-signin -->
+</div> <!-- /container -->
+}
