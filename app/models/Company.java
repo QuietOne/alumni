@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * @author tihomir
+ * @author Jelena
  * @version 1.0.0
  */
 @Entity
@@ -30,5 +31,11 @@ public class Company extends Model {
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     public List<Project> projects = new ArrayList<>();
+
+    public static Model.Finder<Long,Company> find = new Model.Finder(Long.class, Company.class);
+
+    public static List<Company> findAll() {
+        return find.all();
+    }
 
 }
