@@ -7,23 +7,21 @@
 <div class="container">
     <div class="form-signin">
         @helper.form(routes.SchoolController.addSchool) {
-        <h2 class="form-signin-heading">Add school</h2>
-        <!--<input type="text" class="input-block-level" name="name" placeholder="Name" value="@form("name").value">-->
-        @helper.inputText(form("name"), '_label -> "Name: ", '_placeholder -> "Name")
-        @helper.inputDate(form("dateCreated"), '_label -> "Date created: ")
-        @helper.inputText(form("location"), '_label -> "Location: ", '_placeholder -> "Location")
-        <!--<input type="text" class="input-block-level" name="location" placeholder="Location" value="@form("location").value">-->
-        <button type="submit" class="btn btn-large btn-primary">Add</button>
-        @if(form.hasGlobalErrors) {
-        <p class="error">
-            @form.globalError.message
-        </p>
-        }
-        @if(flash.contains("success")) {
-        <p class="success">
-            @flash.get("success")
-        </p>
-        }
+            <h2 class="form-signin-heading">Add school</h2>
+            <input type="text" class="input-block-level" name="name" placeholder="Name" value="@form("name").value">
+            @helper.inputDate(form("dateCreated"), '_label -> "Date created: ", 'class -> "input-block-level")
+            <input type="text" class="input-block-level" name="location" placeholder="Location" value="@form("location").value">
+            <button type="submit" class="btn btn-large btn-primary">Add</button>
+            @if(form.hasGlobalErrors) {
+                <p class="error">
+                    @form.globalError.message
+                </p>
+            }
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
         }
     </div> <!-- /form-signin -->
 </div> <!-- /container -->

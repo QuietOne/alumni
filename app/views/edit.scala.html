@@ -5,19 +5,37 @@
 @menu()
 <div class="container">
     <div class="form-signin">
-        @helper.form(routes.RegisterController.register) {
-            <h2 class="form-signin-heading">Please fullfil this form:</h2>
+        @helper.form(routes.EditProfileController.edit, 'enctype -> "multipart/form-data") {
+            <h2 class="form-signin-heading">Your profile data</h2>
             <input type="email" class="input-block-level" name="email" placeholder="Email" value="@form("email").value">
             <input type="text" class="input-block-level" name="firstName" placeholder="First name" value="@form("firstName").value">
             <input type="text" class="input-block-level" name="lastName" placeholder="Last name" value="@form("lastName").value">
-            <input type="password" class="input-block-level" name="password" placeholder="Password" value="@form("password").value">
-            <input type="password" class="input-block-level" name="confirmPassword" placeholder="Confirm password" value="@form("confirmPassword").value">
-            <button type="submit" class="btn btn-large btn-primary">Register</button>
+            @if(!MainController.availableCV) {
+                Upload your CV: <input type="file" name="cv" value="@form("file").value"><br><br>
+            }
+            <button type="submit" class="btn btn-large btn-primary">Confirm edit</button><br><br>
+            <a href="@routes.ChangePasswordController.showChangePasswordView()" class="btn btn-large btn-primary">Change password</a><br><br>
+            <a href="@routes.LinkedInController.showLinkedInView()" class="btn btn-large btn-primary">Connect to LinkedIn</a><br><br>
+            @if(MainController.availableCV) {
+                <a href="@routes.EditProfileController.removeCV()" class="btn btn-large btn-primary">Remove CV</a><br><br>
+                <a href="@routes.EditProfileController.getMyCV()" class="btn btn-large btn-primary">See my CV</a><br><br>
+            }
             @if(form.hasGlobalErrors) {
                 <p class="error">
                     @form.globalError.message
                 </p>
             }
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+            @if(flash.contains("error")) {
+                <p class="error">
+                    @flash.get("error")
+                </p>
+            }
+
         }
     </div> <!-- /form-signin -->
 </div> <!-- /container -->

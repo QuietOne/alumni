@@ -4,6 +4,8 @@ import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class Person extends Model {
     @Constraints.Required
     public String password;
 
+    public String linkedInUsername;
+    public String linkedInPassword;
     public String linkedInToken;
 
     public String facebookToken;
@@ -44,9 +48,10 @@ public class Person extends Model {
 
     @ManyToMany (mappedBy = "persons", cascade = CascadeType.ALL)
     public List<Tag> tags = new ArrayList<>();
-/*
-    public File cv;
-    public File portfolio;
-    public File publicationFile;
-*/
+
+    public String cvName;
+
+//    public File portfolio;
+//    public File publicationFile;
+
 }

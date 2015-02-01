@@ -5,6 +5,7 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.company;
+import views.html.forbidden;
 
 /**
  * @author Tihomir Radosavljevic
@@ -16,12 +17,13 @@ public class CompanyController extends Controller{
         if (MainController.isAdmin()) {
             return ok(company.render(Form.form(CompanyParameters.class)));
         } else {
-            return forbidden();
+            return ok(forbidden.render());
         }
     }
 
     public static Result addCompany() {
         Form<CompanyParameters> companyForm = Form.form(CompanyParameters.class).bindFromRequest();
+        System.out.println("Form: "+companyForm);
         if (companyForm.hasErrors()) {
             return badRequest(company.render(companyForm));
         } else {

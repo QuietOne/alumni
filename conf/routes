@@ -5,6 +5,7 @@
 # Login page
 GET         /                           controllers.LoginController.showLoginView()
 POST        /login                      controllers.LoginController.login()
+GET         /logout                     controllers.LoginController.logout()
 
 # Register page
 GET         /register                   controllers.RegisterController.showRegisterView()
@@ -20,6 +21,11 @@ POST        /facebook                   controllers.FacebookController.connect()
 # Edit page
 GET         /edit                       controllers.EditProfileController.showEditView()
 POST        /edit                       controllers.EditProfileController.edit()
+GET         /change-password            controllers.ChangePasswordController.showChangePasswordView()
+POST        /change-password            controllers.ChangePasswordController.changePassword()
+GET         /cv/{id}.pdf                controllers.EditProfileController.getCV(id: Long)
+GET         /remove-cv                  controllers.EditProfileController.removeCV()
+GET         /my-cv                      controllers.EditProfileController.getMyCV()
 
 # Admin pages
 

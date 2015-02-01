@@ -28,6 +28,11 @@ public class LinkedInController extends Controller{
         if (linkedInForm.hasErrors()) {
             return badRequest(linkedin.render(linkedInForm));
         } else {
+            String email = session().get("email");
+            Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
+            person.linkedInUsername = linkedInForm.get().email;
+            person.linkedInPassword = linkedInForm.get().password;
+            person.update();
             return redirect("https://www.linkedin.com/uas/oauth2/authorization?response_type=code" +
                     "&client_id=77xql59kd9sgsn" +
                     "&scope=r_fullprofile" +
