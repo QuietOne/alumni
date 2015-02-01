@@ -1,0 +1,43 @@
+@import helper.twitterBootstrap._
+
+@(message: String)
+@main("Search companies") {
+@menu()
+<div class="container">
+
+        <script type="text/javascript">
+      /* Table initialisation */
+      $(document).ready(function() {
+        $('#companies_table').dataTable( {
+          "bProcessing": true,
+          "aaSorting": [[ 0, "asc" ]],
+          "bServerSide": true,
+          "bJQueryUI": true,
+          "sPaginationType": "full_numbers",
+          "sAjaxSource": "@routes.CompaniesController.list()"
+        });
+      });
+
+        </script>
+
+
+        <h2>Companies</h2>
+
+        <table id="companies_table" class='display'>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Number of employees</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+        </table>
+
+
+
+
+</div> <!-- /container -->
+}

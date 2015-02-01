@@ -1,0 +1,79 @@
+companies:
+
+    - !!models.Company
+        id:     1
+        name:   Donald Duck
+        location:  Mr. Temperament
+        numberOfEmployees:  34
+
+    - !!models.Company
+        id:     2
+        name:   Mickey Mouse
+        location:  Detective
+        numberOfEmployees:  534
+
+    - !!models.Company
+        id:     3
+        name:   Carl Barks
+        location:  Illustrator
+        numberOfEmployees:  1423
+
+    - !!models.Company
+        id:     4
+        name:   Don Rosa
+        location:  Illustrator
+        numberOfEmployees:  11
+
+    - !!models.Company
+        id:     5
+        name:   Goofy
+        location:  Anthropomorphic dog
+        numberOfEmployees:  45
+
+    - !!models.Company
+        id:     6
+        name:   Pluto
+        location:  Mickeys Dog
+        numberOfEmployees:  65
+
+    - !!models.Company
+        id:     7
+        name:   Arizona Goof
+        location:  Archaeologist
+        numberOfEmployees:  345
+
+    - !!models.Company
+        id:     8
+        name:   Grandma Duck
+        location:  Grandma
+        numberOfEmployees:  134
+
+    - !!models.Company
+        id:     9
+        name:   Gladstone Gander
+        location:  Lucky guy
+        numberOfEmployees:  50
+
+    - !!models.Company
+        id:     10
+        name:   Fethry Duck
+        location:  Beatnik
+        numberOfEmployees:  12
+
+    - !!models.Company
+        id:     11
+        name:   Daisy Duck
+        location:  Donald's girlfriend
+        numberOfEmployees:  43
+
+    - !!models.Company
+        id:     12
+        name:   Scrooge McDuck
+        location:  Business duck
+        numberOfEmployees:  456
+
+    - !!models.Company
+        id:     13
+        name:   Ludwig von Drake
+        location:  Professor
+        numberOfEmployees:  230

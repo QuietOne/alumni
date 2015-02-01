@@ -36,6 +36,10 @@ POST        /school                     controllers.SchoolController.addSchool()
 GET         /company                    controllers.CompanyController.showCompanyView()
 POST        /company                    controllers.CompanyController.addCompany()
 
+# Search pages
+GET         /search-company             controllers.CompaniesController.showCompaniesSearch()
+GET         /search                     controllers.CompaniesController.list()
+
 # Index page
 GET         /main                       controllers.IndexController.showIndexView()
 
