@@ -1,3 +1,3 @@
-# Getting started with Play (Java)
+# Alumni
 
-This project demonstrate how to create a simple CRUD application with Play. A screencast to the project exist on [playframework.com](http://playframework.com)
+Test project to see how to use CRUD operation in Play framework, uploading files and configurating routes. There is also test to see how easy is to connect to LinkedIn with play framework.
