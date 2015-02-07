@@ -1,0 +1,43 @@
+@import helper.twitterBootstrap._
+
+@(message: String)
+@main("Search persons") {
+@menu()
+<div class="container">
+
+    <script type="text/javascript">
+      /* Table initialisation */
+      $(document).ready(function() {
+        $('#persons_table').dataTable( {
+          "bProcessing": true,
+          "aaSorting": [[ 0, "asc" ]],
+          "bServerSide": true,
+          "bJQueryUI": true,
+          "sPaginationType": "full_numbers",
+          "sAjaxSource": "@routes.PersonsController.list()"
+        });
+      });
+
+        </script>
+
+
+    <h2>Persons</h2>
+
+    <table id="persons_table" class='display'>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>E-mail</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+
+
+</div> <!-- /container -->
+}

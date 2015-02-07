@@ -54,4 +54,11 @@ public class Person extends Model {
 //    public File portfolio;
 //    public File publicationFile;
 
+    public static Model.Finder<Long,Person> find = new Model.Finder(Long.class, Person.class);
+
+    public static List<Person> findAll() {
+        return find.all();
+    }
+
+
 }
