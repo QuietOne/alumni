@@ -23,7 +23,7 @@ GET         /edit                       controllers.EditProfileController.showEd
 POST        /edit                       controllers.EditProfileController.edit()
 GET         /change-password            controllers.ChangePasswordController.showChangePasswordView()
 POST        /change-password            controllers.ChangePasswordController.changePassword()
-GET         /cv/{id}.pdf                controllers.EditProfileController.getCV(id: Long)
+GET         /cv/:id                     controllers.EditProfileController.getCV(id: String)
 GET         /remove-cv                  controllers.EditProfileController.removeCV()
 GET         /my-cv                      controllers.EditProfileController.getMyCV()
 GET         /degree                     controllers.DegreeController.showDegreeView()

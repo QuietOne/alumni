@@ -2,20 +2,20 @@ companies:
 
     - !!models.Company
         id:     1
-        name:   Donald Duck
-        location:  Mr. Temperament
+        name:   Engineers London Limited
+        location:  London
         numberOfEmployees:  34
 
     - !!models.Company
         id:     2
-        name:   Mickey Mouse
-        location:  Detective
+        name:   Tabasina Firma
+        location:  Nowhere Place
         numberOfEmployees:  534
 
     - !!models.Company
         id:     3
-        name:   Carl Barks
-        location:  Illustrator
+        name:   Tihomir Company
+        location:  Someday Place
         numberOfEmployees:  1423
 
     - !!models.Company

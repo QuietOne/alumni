@@ -17,7 +17,7 @@ create table degree (
   date_ended                timestamp,
   name                      varchar(255),
   field_of_study            varchar(255),
-  grade                     double,
+  grade                     varchar(255),
   person_id                 bigint,
   school_id                 bigint,
   constraint pk_degree primary key (id))

@@ -91,22 +91,22 @@ public class EditProfileController extends Controller {
         String email = session().get("email");
         Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
         try {
-            return ok(new FileInputStream(Paths.get(MainController.PATH_CV,person.id+"").toFile())).as("application/pdf");
+            return ok(new FileInputStream(Paths.get(MainController.PATH_CV, person.id+"").toFile())).as("application/pdf");
         } catch (Exception ex) {
             return ok(forbidden.render());
         }
 
     }
 
-    public static Result getCV(Long id) {
-        //Person person = Ebean.find(Person.class).where().eq("id", id).findUnique();
+    public static Result getCV(String id) {
         try {
             String email = session().get("email");
             if (email == null || email.equals("")) {
                 throw new Exception("Not logged in");
             }
-            return ok(new FileInputStream(Paths.get(MainController.PATH_CV, id+"").toFile())).as("application/pdf");
+            return ok(new FileInputStream(Paths.get(MainController.PATH_CV, id).toFile())).as("application/pdf");
         } catch (Exception ex) {
+            ex.printStackTrace();
             return ok(forbidden.render());
         }
     }

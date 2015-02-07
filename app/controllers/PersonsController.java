@@ -86,6 +86,11 @@ public class PersonsController extends Controller {
             row.put("1", c.firstName);
             row.put("2", c.lastName);
             row.put("3", c.email);
+            if (c.cvName != null) {
+                row.put("4", "<a href=\"" + routes.EditProfileController.getCV(c.id + "") + "\" class=\"btn btn-large btn-primary\">CV</a>");
+            } else {
+                row.put("4", "/");
+            }
             an.add(row);
         }
 

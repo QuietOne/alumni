@@ -10,7 +10,7 @@ import play.mvc.Controller;
  */
 public class MainController extends Controller {
 
-    public static String PATH_CV = "public/files/cv";
+    public static String PATH_CV = "public";
 
     public static boolean isAdmin(){
         String email = session().get("email");
