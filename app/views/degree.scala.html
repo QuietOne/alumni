@@ -5,6 +5,36 @@
 @main("Degree") {
 @menu()
 <div class="container">
+
+    <script type="text/javascript">
+      /* Table initialisation */
+      $(document).ready(function() {
+        $('#school_table').dataTable( {
+          "bProcessing": true,
+          "aaSorting": [[ 0, "asc" ]],
+          "bServerSide": true,
+          "bJQueryUI": true,
+          "sPaginationType": "full_numbers",
+          "sAjaxSource": "@routes.SchoolsController.list()"
+        });
+
+        var table = $('#school_table').DataTable();
+
+        $('#school_table tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+
+
+         } );
+
+      });
+        </script>
+
     <div class="form-signin">
         @helper.form(routes.DegreeController.addDegree) {
             <h2 class="form-signin-heading">Add degree</h2>
@@ -23,6 +53,9 @@
             @helper.inputText(form("grade"),
                 '_label -> "Grade",
                 'class  -> "input-block-level")
+            @helper.inputText(form("school"),
+                '_label -> "School",
+                'class  -> "input-block-level")
 
             <button type="submit" class="btn btn-large btn-primary">Add</button>
             @if(form.hasGlobalErrors) {
@@ -36,9 +69,25 @@
                 </p>
             }
 
-        <a href="@routes.SchoolsController.showFindSchools()" class="btn btn-large btn-primary">Find school</a>
 
         }
     </div> <!-- /form-signin -->
+
+    <h2>Schools</h2>
+
+    <table id="school_table" class='display'>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Date created</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+
+    </table>
 </div> <!-- /container -->
 }
