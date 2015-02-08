@@ -28,6 +28,10 @@ GET         /remove-cv                  controllers.EditProfileController.remove
 GET         /my-cv                      controllers.EditProfileController.getMyCV()
 GET         /degree                     controllers.DegreeController.showDegreeView()
 POST        /degree                     controllers.DegreeController.addDegree()
+GET         /degrees/:id                controllers.DegreesController.getDegrees(id: String)
+GET         /remove-degree/:id          controllers.DegreeController.removeDegree(id: String)
+GET         /edit-degree/:id            controllers.DegreeController.showEditDegreeView(id: String)
+POST        /edit-degree                controllers.DegreeController.editDegree()
 
 # Admin pages
 

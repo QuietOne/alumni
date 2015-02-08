@@ -86,10 +86,15 @@ public class PersonsController extends Controller {
             row.put("1", c.firstName);
             row.put("2", c.lastName);
             row.put("3", c.email);
-            if (c.cvName != null) {
-                row.put("4", "<a href=\"" + routes.EditProfileController.getCV(c.id + "") + "\" class=\"btn btn-large btn-primary\">CV</a>");
+            if (c.degrees == null || c.degrees.isEmpty()) {
+                row.put("4","/");
             } else {
-                row.put("4", "/");
+                row.put("4", "<a href=\"" + routes.DegreesController.getDegrees(c.id + "") + "\" class=\"btn btn-large btn-primary\">Degrees</a>");
+            }
+            if (c.cvName != null) {
+                row.put("5", "<a href=\"" + routes.EditProfileController.getCV(c.id + "") + "\" class=\"btn btn-large btn-primary\">CV</a>");
+            } else {
+                row.put("5", "/");
             }
             an.add(row);
         }

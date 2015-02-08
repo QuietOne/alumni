@@ -10,6 +10,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.showDegrees;
 
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 /**
@@ -79,19 +80,29 @@ public class DegreesController  extends Controller {
 
         ArrayNode an = result.putArray("aaData");
 
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("dd/MM/yyyy");
+
         for(Degree c : contactsPage.getList()) {
             ObjectNode row = Json.newObject();
             row.put("0", c.id);
-            row.put("1", String.valueOf(c.dateStarted));
-            row.put("2", String.valueOf(c.dateEnded));
+            row.put("1", sdf.format(c.dateStarted));
+            row.put("2", sdf.format(c.dateEnded));
             row.put("3", c.name);
             row.put("4", c.fieldOfStudy);
             row.put("5", c.grade);
+            row.put("6", "<a href=\"" + routes.DegreeController.showEditDegreeView(c.id + "") + "\" class=\"btn btn-large btn-primary\">Edit</a>");
+            row.put("7", "<a href=\"" + routes.DegreeController.removeDegree(c.id + "") + "\" class=\"btn btn-large btn-primary\">Remove</a>");
             an.add(row);
         }
 
         return ok(result);
 
+    }
+
+    public static Result getDegrees(String id) {
+
+        return null;
     }
 
 }

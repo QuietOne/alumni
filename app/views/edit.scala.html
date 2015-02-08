@@ -39,7 +39,7 @@
                 <a href="@routes.EditProfileController.removeCV()" class="btn btn-large btn-primary">Remove CV</a>
                 <a href="@routes.EditProfileController.getMyCV()" class="btn btn-large btn-primary">See my CV</a><br><br>
             }
-            <a href="@routes.DegreeController.showDegreeView()" class="btn btn-large btn-primary">Degrees</a><br><br>
+            <a href="@routes.DegreeController.showDegreeView()" class="btn btn-large btn-primary">Add degree</a><br><br>
             @if(form.hasGlobalErrors) {
                 <p class="error">
                     @form.globalError.message
@@ -70,6 +70,8 @@
             <th>Name</th>
             <th>Field of study</th>
             <th>Grade</th>
+            <th>Edit</th>
+            <th>Remove</th>
         </tr>
         </thead>
         <tbody>

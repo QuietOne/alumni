@@ -1,4 +1,4 @@
-@(form: Form[DegreeController.DegreeParameters])(schools: List[School])(degrees: List[Degree])
+@(form: Form[DegreeController.DegreeParameters])(schools: List[School])(degrees: List[Degree])(secondTitle: String)
 
 @import helper.twitterBootstrap._
 
@@ -35,32 +35,33 @@
       });
     </script><!--table initalisation-->
     <div class="form-signin">
-        @helper.form(routes.DegreeController.addDegree) {
-            <h2 class="form-signin-heading">Degree</h2>
-            @helper.inputDate(form("dateStarted"),
-                '_label -> "Attendance started",
-                'class  -> "input-block-level")
-            @helper.inputDate(form("dateEnded"),
-                '_label -> "Attendance ended",
-                'class  -> "input-block-level")
-            @helper.inputText(form("name"),
-                '_label -> "Name of degree",
-                'class  -> "input-block-level")
-            @helper.inputText(form("fieldOfStudy"),
-                '_label -> "Field of study",
-                'class  -> "input-block-level")
-            @helper.inputText(form("grade"),
-                '_label -> "Grade",
-                'class  -> "input-block-level")
+        @if(secondTitle == "Add degree") {
+            @helper.form(routes.DegreeController.addDegree) {
+        <h2 class="form-signin-heading">@secondTitle</h2>
+        @helper.inputDate(form("dateStarted"),
+        '_label -> "Attendance started",
+        'class  -> "input-block-level")
+        @helper.inputDate(form("dateEnded"),
+        '_label -> "Attendance ended",
+        'class  -> "input-block-level")
+        @helper.inputText(form("name"),
+        '_label -> "Name of degree",
+        'class  -> "input-block-level")
+        @helper.inputText(form("fieldOfStudy"),
+        '_label -> "Field of study",
+        'class  -> "input-block-level")
+        @helper.inputText(form("grade"),
+        '_label -> "Grade",
+        'class  -> "input-block-level")
 
         <p>Schools (Please, select your school)</p>
         <table id="school_table" class='display'>
             <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Location</th>
-                </tr>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Location</th>
+            </tr>
             </thead>
             <tbody>
             </tbody>
@@ -68,18 +69,66 @@
         @helper.inputText(form("schoolId"),
         '_label -> "Enter school id",
         'class  -> "input-block-level")
-            <button type="submit" class="btn btn-large btn-primary">Add</button>
-            @if(form.hasGlobalErrors) {
-                <p class="error">
-                    @form.globalError.message
-                </p>
-            }
-            @if(flash.contains("success")) {
-                <p class="success">
-                    @flash.get("success")
-                </p>
-            }
+        <button type="submit" class="btn btn-large btn-primary">Add</button>
+        @if(form.hasGlobalErrors) {
+        <p class="error">
+            @form.globalError.message
+        </p>
         }
+        @if(flash.contains("success")) {
+        <p class="success">
+            @flash.get("success")
+        </p>
+        }
+        }
+        } else {
+            @helper.form(routes.DegreeController.editDegree) {
+        <h2 class="form-signin-heading">@secondTitle</h2>
+        @helper.inputDate(form("dateStarted"),
+        '_label -> "Attendance started",
+        'class  -> "input-block-level")
+        @helper.inputDate(form("dateEnded"),
+        '_label -> "Attendance ended",
+        'class  -> "input-block-level")
+        @helper.inputText(form("name"),
+        '_label -> "Name of degree",
+        'class  -> "input-block-level")
+        @helper.inputText(form("fieldOfStudy"),
+        '_label -> "Field of study",
+        'class  -> "input-block-level")
+        @helper.inputText(form("grade"),
+        '_label -> "Grade",
+        'class  -> "input-block-level")
+
+        <p>Schools (Please, select your school)</p>
+        <table id="school_table" class='display'>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        @helper.inputText(form("schoolId"),
+        '_label -> "Enter school id",
+        'class  -> "input-block-level")
+        <button type="submit" class="btn btn-large btn-primary">Update</button>
+        @if(form.hasGlobalErrors) {
+        <p class="error">
+            @form.globalError.message
+        </p>
+        }
+        @if(flash.contains("success")) {
+        <p class="success">
+            @flash.get("success")
+        </p>
+        }
+        }
+        }
+
     </div> <!-- /form-signin -->
 </div> <!-- /container -->
 }
