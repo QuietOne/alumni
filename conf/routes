@@ -38,9 +38,11 @@ POST        /company                    controllers.CompanyController.addCompany
 
 # Search pages
 GET         /search-company             controllers.CompaniesController.showCompaniesSearch()
-GET         /search-company-list                   controllers.CompaniesController.list()
+GET         /search-company-list        controllers.CompaniesController.list()
 GET         /search-person              controllers.PersonsController.showPersonsSearch()
-GET         /search-person-list             controllers.PersonsController.list()
+GET         /search-person-list         controllers.PersonsController.list()
+GET         /search-school              controllers.SchoolsController.showFindSchools()
+GET         /search-school-list         controllers.SchoolsController.list()
 
 # Index page
 GET         /main                       controllers.IndexController.showIndexView()
