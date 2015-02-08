@@ -4,12 +4,31 @@
 @main("Edit profile") {
 @menu()
 <div class="container">
+
+    <script type="text/javascript">
+    /* Table initialisation */
+      $(document).ready(function() {
+        $('#degrees_table').dataTable( {
+          "bProcessing": true,
+          "aaSorting": [[ 0, "asc" ]],
+          "bServerSide": true,
+          "bJQueryUI": true,
+          "sPaginationType": "full_numbers",
+          "sAjaxSource": "@routes.DegreesController.list()"
+        });
+      });
+
+        </script>
+
+
+
     <div class="form-signin">
         @helper.form(routes.EditProfileController.edit, 'enctype -> "multipart/form-data") {
             <h2 class="form-signin-heading">Your profile data</h2>
             <input type="email" class="input-block-level" name="email" placeholder="Email" value="@form("email").value">
             <input type="text" class="input-block-level" name="firstName" placeholder="First name" value="@form("firstName").value">
             <input type="text" class="input-block-level" name="lastName" placeholder="Last name" value="@form("lastName").value">
+
             @if(!MainController.availableCV) {
                 Upload your CV: <input type="file" name="cv" value="@form("file").value"><br><br>
             }
@@ -39,5 +58,22 @@
 
         }
     </div> <!-- /form-signin -->
+
+    <h2>Degrees</h2>
+
+    <table id="degrees_table" class='display'>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date started</th>
+            <th>Date ended</th>
+            <th>Name</th>
+            <th>Field of study</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div> <!-- /container -->
 }

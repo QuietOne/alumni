@@ -5,9 +5,11 @@ import play.db.ebean.Model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author tihomir
+ * @author Jelena
  * @version 1.0.0
  */
 @Entity
@@ -33,4 +35,11 @@ public class Degree extends Model {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     public School school;
+
+
+    public static Model.Finder<Long,Degree> find = new Model.Finder(Long.class, Degree.class);
+
+    public static List<Degree> findAll() {
+        return find.all();
+    }
 }
