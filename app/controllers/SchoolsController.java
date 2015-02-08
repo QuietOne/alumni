@@ -45,8 +45,7 @@ public class SchoolsController extends Controller {
         switch(Integer.valueOf(params.get("iSortCol_0")[0])) {
             case 0 : sortBy = "id"; break;
             case 1 : sortBy = "name"; break;
-            case 2 : sortBy = "dateCreated"; break;
-            case 3 : sortBy = "location"; break;
+            case 2 : sortBy = "location"; break;
         }
 
         /**
@@ -83,8 +82,7 @@ public class SchoolsController extends Controller {
             ObjectNode row = Json.newObject();
             row.put("0", c.id);
             row.put("1", c.name);
-            row.put("2", String.valueOf(c.dateCreated));
-            row.put("3", c.location);
+            row.put("2", c.location);
             an.add(row);
         }
 

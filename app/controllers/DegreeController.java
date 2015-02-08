@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class DegreeController extends Controller{
 
+
     public static Result showDegreeView() {
         String email = session().get("email");
         if (email == null || email.equals("")) {
@@ -45,51 +46,53 @@ public class DegreeController extends Controller{
             degree.dateEnded = form.get().dateEnded;
             degree.name = form.get().name;
             degree.fieldOfStudy = form.get().fieldOfStudy;
-            degree.school = form.get().school;
+            School school = Ebean.find(School.class).where().eq("id", form.get().schoolId).findUnique();
+            degree.school = school;
             degree.save();
+            flash("success", "You've been successfully added a new degree");
             return redirect(routes.DegreeController.showDegreeView());
         }
     }
 
-    public static Result editDegree(Long id) {
-        Form<DegreeParameters> form = Form.form(DegreeParameters.class).bindFromRequest();
-        String email = session().get("email");
-        Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
-        if (form.hasErrors()) {
-            List<School> schools = Ebean.find(School.class).findList();
-            return badRequest(degree.render(form, schools, person.degrees));
-        } else {
-            Degree degree = Ebean.find(Degree.class).where().eq("id", id).findUnique();
-            degree.person = person;
-            degree.dateStarted = form.get().dateStarted;
-            degree.dateEnded = form.get().dateEnded;
-            degree.name = form.get().name;
-            degree.fieldOfStudy = form.get().fieldOfStudy;
-            degree.school = form.get().school;
-            degree.update();
-            return redirect(routes.DegreeController.showDegreeView());
-        }
-    }
-
-    public static Result removeDegree(Long id) {
-        Form<DegreeParameters> form = Form.form(DegreeParameters.class).bindFromRequest();
-        String email = session().get("email");
-        Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
-        if (form.hasErrors()) {
-            List<School> schools = Ebean.find(School.class).findList();
-            return badRequest(degree.render(form, schools, person.degrees));
-        } else {
-            Degree degree = Ebean.find(Degree.class).where().eq("id", id).findUnique();
-            degree.person = person;
-            degree.dateStarted = form.get().dateStarted;
-            degree.dateEnded = form.get().dateEnded;
-            degree.name = form.get().name;
-            degree.fieldOfStudy = form.get().fieldOfStudy;
-            degree.school = form.get().school;
-            degree.delete();
-            return redirect(routes.DegreeController.showDegreeView());
-        }
-    }
+//    public static Result editDegree(Long id) {
+//        Form<DegreeParameters> form = Form.form(DegreeParameters.class).bindFromRequest();
+//        String email = session().get("email");
+//        Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
+//        if (form.hasErrors()) {
+//            List<School> schools = Ebean.find(School.class).findList();
+//            return badRequest(degree.render(form, schools, person.degrees));
+//        } else {
+//            Degree degree = Ebean.find(Degree.class).where().eq("id", id).findUnique();
+//            degree.person = person;
+//            degree.dateStarted = form.get().dateStarted;
+//            degree.dateEnded = form.get().dateEnded;
+//            degree.name = form.get().name;
+//            degree.fieldOfStudy = form.get().fieldOfStudy;
+//            degree.school = form.get().school;
+//            degree.update();
+//            return redirect(routes.DegreeController.showDegreeView());
+//        }
+////    }
+//
+//    public static Result removeDegree(Long id) {
+//        Form<DegreeParameters> form = Form.form(DegreeParameters.class).bindFromRequest();
+//        String email = session().get("email");
+//        Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
+//        if (form.hasErrors()) {
+//            List<School> schools = Ebean.find(School.class).findList();
+//            return badRequest(degree.render(form, schools, person.degrees));
+//        } else {
+//            Degree degree = Ebean.find(Degree.class).where().eq("id", id).findUnique();
+//            degree.person = person;
+//            degree.dateStarted = form.get().dateStarted;
+//            degree.dateEnded = form.get().dateEnded;
+//            degree.name = form.get().name;
+//            degree.fieldOfStudy = form.get().fieldOfStudy;
+//            degree.school = DegreeController.selectedSchool;
+//            degree.delete();
+//            return redirect(routes.DegreeController.showDegreeView());
+//        }
+//    }
 
     public static class DegreeParameters {
         public Date dateStarted;
@@ -97,9 +100,14 @@ public class DegreeController extends Controller{
         public String name;
         public String fieldOfStudy;
         public String grade;
-        public School school;
+        public Long schoolId;
 
         public String validate() {
+            System.out.println("dateStarted: "+dateStarted);
+            System.out.println("dateEnded: "+dateEnded);
+            System.out.println("name: "+name);
+            System.out.println("fieldOfStudy: "+fieldOfStudy);
+            System.out.println("school: "+schoolId);
             if (dateStarted == null) {
                 return "Date when attendance started has not been set.";
             }
@@ -112,7 +120,7 @@ public class DegreeController extends Controller{
             if (fieldOfStudy == null || fieldOfStudy.equals("")) {
                 return "Field of study has not been set.";
             }
-            if (school == null) {
+            if (schoolId == 0) {
                 return "School has not been selected.";
             }
             return null;

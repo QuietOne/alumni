@@ -5,7 +5,6 @@
 @main("Degree") {
 @menu()
 <div class="container">
-
     <script type="text/javascript">
       /* Table initialisation */
       $(document).ready(function() {
@@ -21,24 +20,23 @@
         var table = $('#school_table').DataTable();
         var selectedRow;
 
-        $('#school_table tbody').on( 'click', 'tr', function () {
+       /* $('#school_table tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
+                document.getElementById("schoolId_field").value = 0;
             }
             else {
                 table.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+                document.getElementById("schoolId_field").value = 2;
             }
-         } );
+         } );*/
 
       });
-
-
-        </script>
-
+    </script><!--table initalisation-->
     <div class="form-signin">
         @helper.form(routes.DegreeController.addDegree) {
-            <h2 class="form-signin-heading">Add degree</h2>
+            <h2 class="form-signin-heading">Degree</h2>
             @helper.inputDate(form("dateStarted"),
                 '_label -> "Attendance started",
                 'class  -> "input-block-level")
@@ -55,7 +53,21 @@
                 '_label -> "Grade",
                 'class  -> "input-block-level")
 
-
+        <p>Schools (Please, select your school)</p>
+        <table id="school_table" class='display'>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        @helper.inputText(form("schoolId"),
+        '_label -> "Enter school id",
+        'class  -> "input-block-level")
             <button type="submit" class="btn btn-large btn-primary">Add</button>
             @if(form.hasGlobalErrors) {
                 <p class="error">
@@ -67,26 +79,7 @@
                     @flash.get("success")
                 </p>
             }
-
-
         }
     </div> <!-- /form-signin -->
-
-    <h2>Schools</h2>
-
-    <table id="school_table" class='display'>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Date created</th>
-            <th>Location</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-
-
-    </table>
 </div> <!-- /container -->
 }
