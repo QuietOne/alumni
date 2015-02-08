@@ -43,6 +43,8 @@ GET         /search-person              controllers.PersonsController.showPerson
 GET         /search-person-list         controllers.PersonsController.list()
 GET         /search-school              controllers.SchoolsController.showFindSchools()
 GET         /search-school-list         controllers.SchoolsController.list()
+GET         /search-degree              controllers.DegreesController.showDegreesView()
+GET         /search-degree-list         controllers.DegreesController.list()
 
 # Index page
 GET         /main                       controllers.IndexController.showIndexView()

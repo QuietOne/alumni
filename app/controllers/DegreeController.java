@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * @author tihomir
+ * @author Jelena
  * @version 1.0.0
  */
 public class DegreeController extends Controller{
@@ -46,6 +47,7 @@ public class DegreeController extends Controller{
             degree.dateEnded = form.get().dateEnded;
             degree.name = form.get().name;
             degree.fieldOfStudy = form.get().fieldOfStudy;
+            degree.grade = form.get().grade;
             School school = Ebean.find(School.class).where().eq("id", form.get().schoolId).findUnique();
             degree.school = school;
             degree.save();
