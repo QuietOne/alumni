@@ -1,21 +1,31 @@
 package controllers;
 
+import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Expr;
 import com.avaje.ebean.Page;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Degree;
+import models.Person;
+import models.School;
+import play.data.Form;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.degree;
+import views.html.forbidden;
 import views.html.showDegrees;
+import views.html.degrees;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Windows 8 on 08-Feb-15.
  * @author Jelena Tabas
+ * @author Tihomir Radosavljevic
  */
 public class DegreesController  extends Controller {
 
@@ -102,7 +112,14 @@ public class DegreesController  extends Controller {
 
     public static Result getDegrees(String id) {
 
-        return null;
+        Person person = Ebean.find(Person.class).where().eq("id", id).findUnique();
+        List<Degree> degreesList = Ebean.find(Degree.class).where().eq("person", person).findList();
+
+        return ok(degrees.render(degreesList));
+
     }
+
+
+
 
 }

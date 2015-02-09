@@ -1,0 +1,50 @@
+@(degrees: List[Degree])
+
+@import helper.twitterBootstrap._
+
+@main("Show degrees") {
+@menu()
+<div class="container">
+
+    <script type="text/javascript">
+      /* Table initialisation */
+      $(document).ready(function() {
+       $('#degrees_table').dataTable({
+          "bProcessing": true,
+          "aaSorting": [[ 0, "asc" ]],
+          "bJQueryUI": true,
+          "sPaginationType": "full_numbers",
+        });
+      });
+        </script>
+
+
+    <h2>Degrees</h2>
+
+    <table id="degrees_table" class='display'>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date started</th>
+            <th>Date ended</th>
+            <th>Name</th>
+            <th>Field of study</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+        @for(degree <- degrees){
+        <tbody>
+        <tr>
+            <th>@degree.id</th>
+            <th>@degree.dateStarted</th>
+            <th>@degree.dateEnded</th>
+            <th>@degree.name</th>
+            <th>@degree.fieldOfStudy</th>
+            <th>@degree.grade</th>
+        </tr>
+         </tbody>
+        }
+    </table>
+
+</div> <!-- /container -->
+}
