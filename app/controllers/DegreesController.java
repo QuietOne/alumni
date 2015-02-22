@@ -93,17 +93,22 @@ public class DegreesController  extends Controller {
         SimpleDateFormat sdf = new SimpleDateFormat();
         sdf.applyPattern("dd/MM/yyyy");
 
+        String email = session().get("email");
+        Person person = Ebean.find(Person.class).where().eq("email", email).findUnique();
+
         for(Degree c : contactsPage.getList()) {
-            ObjectNode row = Json.newObject();
-            row.put("0", c.id);
-            row.put("1", sdf.format(c.dateStarted));
-            row.put("2", sdf.format(c.dateEnded));
-            row.put("3", c.name);
-            row.put("4", c.fieldOfStudy);
-            row.put("5", c.grade);
-            row.put("6", "<a href=\"" + routes.DegreeController.showEditDegreeView(c.id + "") + "\" class=\"btn btn-large btn-primary\">Edit</a>");
-            row.put("7", "<a href=\"" + routes.DegreeController.removeDegree(c.id + "") + "\" class=\"btn btn-large btn-primary\">Remove</a>");
-            an.add(row);
+            if (c.person.equals(person)) {
+                ObjectNode row = Json.newObject();
+                row.put("0", c.id);
+                row.put("1", sdf.format(c.dateStarted));
+                row.put("2", sdf.format(c.dateEnded));
+                row.put("3", c.name);
+                row.put("4", c.fieldOfStudy);
+                row.put("5", c.grade);
+                row.put("6", "<a href=\"" + routes.DegreeController.showEditDegreeView(c.id + "") + "\" class=\"btn btn-large btn-primary\">Edit</a>");
+                row.put("7", "<a href=\"" + routes.DegreeController.removeDegree(c.id + "") + "\" class=\"btn btn-large btn-primary\">Remove</a>");
+                an.add(row);
+            }
         }
 
         return ok(result);

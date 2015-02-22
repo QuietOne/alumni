@@ -15,8 +15,6 @@ POST        /register                   controllers.RegisterController.register(
 GET         /linkedin-step1             controllers.LinkedInController.showLinkedInView()
 POST        /linkedin-step1             controllers.LinkedInController.autorizationStep1()
 GET         /linkedin-step2             controllers.LinkedInController.autorizationStep2()
-GET         /facebook                   controllers.FacebookController.showFacebookView()
-POST        /facebook                   controllers.FacebookController.connect()
 
 # Edit page
 GET         /edit                       controllers.EditProfileController.showEditView()

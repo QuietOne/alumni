@@ -33,6 +33,7 @@ public class Person extends Model {
 
     public String linkedInUsername;
     public String linkedInPassword;
+    public String linkedInURL;
     public String linkedInToken;
 
     public String facebookToken;

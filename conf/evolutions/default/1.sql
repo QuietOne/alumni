@@ -32,6 +32,7 @@ create table person (
   password                  varchar(255),
   linked_in_username        varchar(255),
   linked_in_password        varchar(255),
+  linked_in_url             varchar(255),
   linked_in_token           varchar(255),
   facebook_token            varchar(255),
   cv_name                   varchar(255),
